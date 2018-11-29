@@ -1,0 +1,277 @@
+package com.campusCard.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
+
+import com.campusCard.dao.*;
+
+@Component
+public class Mydao {
+NamedParameterJdbcTemplate jdbc;
+@Autowired
+public void setDataSource(DataSource jdbc)
+{
+	this.jdbc=new NamedParameterJdbcTemplate(jdbc);
+}
+public List<AdminModel> getAdmin(AdminModel am) {
+	// TODO Auto-generated method stud
+BeanPropertySqlParameterSource param=new BeanPropertySqlParameterSource(am);
+	
+	return jdbc.query("select * from admin where username=:username and password=:password", param, new RowMapper<AdminModel>() {
+
+		@Override
+		public AdminModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			AdminModel um=new AdminModel();
+			um.setUsername(rs.getString("username"));
+			um.setPassword(rs.getString("password"));
+			
+			return um;
+			
+		}
+	});
+}
+public void insertstud(StudentModel sm) {
+	// TODO Auto-generated method
+	BeanPropertySqlParameterSource par=new BeanPropertySqlParameterSource(sm);
+	jdbc.update("insert into Registration(name,age,department,email_id,phone,batch,address,image,gender,role,username,password,status)values(:name,:age,:department,:email,:phone,:batch,:address,:image,:gender,:role,:username,:password,:status)", par);
+}
+public void insertstaff(StudentModel sm) {
+	// TODO Auto-generated method stub
+	BeanPropertySqlParameterSource par=new BeanPropertySqlParameterSource(sm);
+	jdbc.update("insert into Registration(name,age,department,email_id,phone,account_no,address,image,gender,role,username,password,status)values(:name,:age,:department,:email,:phone,:acc_no,:address,:image,:gender,:role,:username,:password,:status)", par);
+}
+public void insertclient(StudentModel sm) {
+	// TODO Auto-generated method stub
+	BeanPropertySqlParameterSource par=new BeanPropertySqlParameterSource(sm);
+	jdbc.update("insert into Registration(name,age,qualification,category,email_id,phone,address,image,gender,role,username,password,status)values(:name,:age,:qualification,:category,:email,:phone,:address,:image,:gender,:role,:username,:password,:status)", par);
+	
+}
+public List<AdminModel> getstudent(AdminModel am) {
+	// TODO Auto-generated method stub
+BeanPropertySqlParameterSource param=new BeanPropertySqlParameterSource(am);
+	
+	return jdbc.query("select * from registration where username=:username and password=:password and role='user' and status='active'", param, new RowMapper<AdminModel>() {
+
+		@Override
+		public AdminModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			AdminModel um=new AdminModel();
+			um.setUsername(rs.getString("username"));
+			um.setPassword(rs.getString("password"));
+			um.setId(rs.getString("id"));
+			return um;
+			
+		}
+	});
+}
+
+public List<AdminModel> getclient(AdminModel am) {
+	// TODO Auto-generated method stub
+BeanPropertySqlParameterSource param=new BeanPropertySqlParameterSource(am);
+	
+	return jdbc.query("select * from registration where username=:username and password=:password and role='client'  ", param, new RowMapper<AdminModel>() {
+
+		@Override
+		public AdminModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			AdminModel um=new AdminModel();
+			um.setUsername(rs.getString("username"));
+			um.setPassword(rs.getString("password"));	
+			um.setId(rs.getString("id"));
+			um.setName(rs.getString("name"));
+			return um;
+			
+		}
+	});
+}
+public void insertacc(StudentModel sm) {
+	// TODO Auto-generated method stub
+	BeanPropertySqlParameterSource par=new BeanPropertySqlParameterSource(sm);
+	jdbc.update("insert into Registration(name,age,email_id,phone,qualification,address,image,gender,remarks,role,username,password,status)values(:name,:age,:email,:phone,:qualification,:address,:image,:gender,:remarks,:role,:username,:password,:status)", par);
+}
+public List<AdminModel> getacc(AdminModel am) {
+	// TODO Auto-generated method stub
+BeanPropertySqlParameterSource param=new BeanPropertySqlParameterSource(am);
+	
+	return jdbc.query("select * from registration where username=:username and password=:password and role='accountant' ", param, new RowMapper<AdminModel>() {
+
+		@Override
+		public AdminModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			AdminModel um=new AdminModel();
+			um.setUsername(rs.getString("username"));
+			um.setPassword(rs.getString("password"));
+			um.setId(rs.getString("id"));
+			um.setName(rs.getString("name"));
+			return um;
+			
+		}
+	});
+}
+public Object viewuser(StudentModel sm) {
+	// TODO Auto-generated method stub
+BeanPropertySqlParameterSource param=new BeanPropertySqlParameterSource(sm);
+	
+return jdbc.query("select * from registration where status='not active'", param, new RowMapper<StudentModel>() {
+
+		@Override
+		public StudentModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			StudentModel um=new StudentModel();
+			um.setName(rs.getString("name"));
+			um.setAge(rs.getString("age"));
+			um.setDepartment(rs.getString("department"));
+			
+			um.setAddress(rs.getString("address"));
+			um.setPhone(rs.getString("phone"));
+			um.setEmail(rs.getString("email_id"));
+			um.setRole(rs.getString("role"));
+			um.setImage(rs.getString("image"));
+			um.setId(rs.getString("id"));
+			return um;
+			
+		}
+	});
+}
+public List<StudentModel> sprof(StudentModel sm) {
+	// TODO Auto-generated method stub
+	BeanPropertySqlParameterSource param=new BeanPropertySqlParameterSource(sm);
+	
+	return jdbc.query("select * from registration where id=:id", param, new RowMapper<StudentModel>() {
+
+			@Override
+			public StudentModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+				// TODO Auto-generated method stub
+				StudentModel um=new StudentModel();
+				um.setName(rs.getString("name"));
+				um.setAge(rs.getString("age"));
+				um.setDepartment(rs.getString("department"));
+				um.setBatch(rs.getString("batch"));
+				um.setAddress(rs.getString("address"));
+				um.setPhone(rs.getString("phone"));
+				um.setEmail(rs.getString("email_id"));
+				um.setRole(rs.getString("role"));
+				um.setImage(rs.getString("image"));
+				return um;
+				
+			}
+		});
+}
+public void updatest(StudentModel sm) {
+	// TODO Auto-generated method stub
+	BeanPropertySqlParameterSource par=new BeanPropertySqlParameterSource(sm);
+	jdbc.update("update registration set name=:name,age=:age,department=:department,batch=:batch,address=:address,email_id=:email,phone=:phone where id=:id ", par);
+}
+public List<StudentModel> cprof(StudentModel sm) {
+	// TODO Auto-generated method stub
+BeanPropertySqlParameterSource param=new BeanPropertySqlParameterSource(sm);
+	
+	return jdbc.query("select * from registration where id=:id", param, new RowMapper<StudentModel>() {
+
+			@Override
+			public StudentModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+				// TODO Auto-generated method stub
+				StudentModel um=new StudentModel();
+				um.setName(rs.getString("name"));
+				um.setAge(rs.getString("age"));
+				um.setCategory(rs.getString("category"));
+				um.setQualification(rs.getString("Qualification"));
+				um.setAddress(rs.getString("address"));
+				um.setPhone(rs.getString("phone"));
+				um.setEmail(rs.getString("email_id"));
+				um.setRole(rs.getString("role"));
+				um.setImage(rs.getString("image"));
+				return um;
+				
+			}
+		});
+}
+public void updatecl(StudentModel sm) {
+	// TODO Auto-generated method stub
+	BeanPropertySqlParameterSource par=new BeanPropertySqlParameterSource(sm);
+	jdbc.update("update registration set name=:name,age=:age,category=:category,qualification=:qualification,address=:address,email_id=:email,phone=:phone where id=:id ", par);
+}
+public void updateacc(StudentModel sm) {
+	// TODO Auto-generated method stub
+	BeanPropertySqlParameterSource par=new BeanPropertySqlParameterSource(sm);
+	jdbc.update("update registration set name=:name,age=:age,address=:address,email_id=:email,phone=:phone where id=:id ", par);
+}
+public Object selectID(StudentModel sm) {
+	// TODO Auto-generated method stub
+BeanPropertySqlParameterSource param=new BeanPropertySqlParameterSource(sm);
+	
+	return jdbc.query("select * from registration where role='user'", param, new RowMapper<StudentModel>() {
+
+			@Override
+			public StudentModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+				// TODO Auto-generated method stub
+				StudentModel um=new StudentModel();
+				um.setId(rs.getString("id"));
+				System.out.println(um.getId());
+				return um;
+				
+			}
+		});
+}
+public List<StudentModel> selectuser(StudentModel sm) {
+	// TODO Auto-generated method stub
+    BeanPropertySqlParameterSource param=new BeanPropertySqlParameterSource(sm);
+	
+	return jdbc.query("select * from registration where id=:id", param, new RowMapper<StudentModel>() {
+
+			@Override
+			public StudentModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+				// TODO Auto-generated method stub
+				StudentModel um=new StudentModel();
+				um.setName(rs.getString("name"));
+				
+				um.setDepartment(rs.getString("department"));
+				um.setBatch(rs.getString("batch"));
+				um.setAddress(rs.getString("address"));
+				um.setPhone(rs.getString("phone"));
+				
+				return um;
+				
+			}
+		});
+}
+public void insertcard(StudentModel sm) {
+	// TODO Auto-generated method stub
+	BeanPropertySqlParameterSource par=new BeanPropertySqlParameterSource(sm);
+	jdbc.update("insert into card(user_id,date,uname,type,amount,accountant,remarks)values(:id,:date,:name,:type,:amount,:accountant,:remarks)", par);
+}
+public void updateReg(StudentModel sm) {
+	// TODO Auto-generated method stub
+	BeanPropertySqlParameterSource par=new BeanPropertySqlParameterSource(sm);
+	jdbc.update("update registration set status='active' where id=:id", par);
+}
+public Object viewcard(StudentModel sm) {
+	// TODO Auto-generated method stub
+    BeanPropertySqlParameterSource param=new BeanPropertySqlParameterSource(sm);
+	
+	return jdbc.query("select * from card where user_id=:cid and date=:date and type='credit' and status='send'", param, new RowMapper<StudentModel>() {
+
+			@Override
+			public StudentModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+				// TODO Auto-generated method stub
+				StudentModel um=new StudentModel();
+				um.setName(rs.getString("uname"));
+				um.setType(rs.getString("type"));
+				um.setAccountant(rs.getString("accountant"));
+				um.setAmount(rs.getString("amount"));
+				um.setDate(rs.getString("date"));
+				um.setRemarks(rs.getString("remarks"));
+				um.setId(rs.getString("id"));
+				return um;
+			}
+		});
