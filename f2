@@ -1,0 +1,202 @@
+package com.campusCard.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.campusCard.dao.AdminModel;
+import com.campusCard.dao.Mydao;
+import com.campusCard.dao.StudentModel;
+
+@Service
+public class Myservice {
+Mydao dao;
+@Autowired
+public void setDao(Mydao dao) {
+	this.dao = dao;
+}
+public List<AdminModel> getAdmin(AdminModel am) {
+	// TODO Auto-generated method stub
+	return dao.getAdmin(am);
+}
+
+public void insertstud(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.insertstud(sm);
+}
+public void insertstaff(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.insertstaff(sm);
+}
+public void insertclient(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.insertclient(sm);
+}
+public List<AdminModel> getstudent(AdminModel am) {
+	// TODO Auto-generated method stub
+	return dao.getstudent(am);
+}
+
+public List<AdminModel> getclient(AdminModel am) {
+	// TODO Auto-generated method stub
+	return dao.getclient(am);
+}
+public void insertacc(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.insertacc(sm);
+}
+public List<AdminModel> getacc(AdminModel am) {
+	// TODO Auto-generated method stub
+	return dao.getacc(am);
+}
+public Object viewuser(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.viewuser(sm);
+}
+public List<StudentModel> sprof(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.sprof(sm);
+}
+public void updatest(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.updatest(sm);
+}
+public List<StudentModel> cprof(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.cprof(sm);
+}
+public void updatecl(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.updatecl(sm);
+}
+public void updateacc(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.updateacc(sm);
+}
+public Object selectID(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.selectID(sm);
+}
+public List<StudentModel> selectuser(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.selectuser(sm);
+}
+public void insertcard(StudentModel sm) {
+	// TODO Auto-generated method stub
+dao.insertcard(sm);	
+}
+public void updateReg(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.updateReg(sm);
+}
+public Object viewcard(StudentModel sm) {
+	// TODO Auto-generated method stub
+	
+	return dao.viewcard(sm);
+}
+public void deletecard(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.delcard(sm);
+}
+public void inbalance(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.inbalance(sm);
+}
+public void insertrans(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.insertrans(sm);
+}
+public Object viewtrans(StudentModel sm) {
+	// TODO Auto-generated method stub
+  return dao.viewtrans(sm);
+}
+public Object viewstrans(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.viewsttrans(sm);
+}
+public Object viewactive(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.viewactive(sm);
+}
+public void delReg(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.delReg(sm);
+}
+public List<StudentModel> getAmount(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.getAmount(sm);
+}
+public List<StudentModel> selectcard(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.selectcard(sm);
+}
+public void updatecard(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.updatecard(sm);
+}
+public void inserttr(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.inserttr(sm);
+}
+public List<StudentModel> viewtr(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.viewtr(sm);
+}
+public List<StudentModel> getBarcode(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.getBardcode(sm);
+}
+public List<StudentModel> getuser(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.getuser(sm);
+}
+public Object viewscard(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.viewscard(sm);
+}
+public void insertreq(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.insertfreq(sm);
+}
+public Object viewtreq(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.viewtreq(sm);
+}
+public List<StudentModel> gettreq(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.gettreq(sm);
+}
+public void updatereq(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.updatereq(sm);
+}
+public List<StudentModel> getamount(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.getamount(sm);
+}
+public void insertaccount(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.insertaccount(sm);
+}
+public Object viewacc(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.viewacc(sm);
+}
+public Object viewclient(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.viewclient(sm);
+}
+public List<StudentModel> getPhone(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.getPhone(sm);
+}
+public void insertucard(StudentModel sm) {
+	// TODO Auto-generated method stub
+	dao.insertucard(sm);
+}
+public List<StudentModel> viewucard(StudentModel sm) {
+	// TODO Auto-generated method stub
+	return dao.viewucard(sm);
+}
+}
