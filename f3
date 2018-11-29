@@ -1,0 +1,189 @@
+<script type="text/javascript">
+function namevalid(inputtxt) {
+	
+	var letters = /^[A-Za-z]+$/;
+	var val = inputtxt.value.replace(/\s/g, '');
+	  if (val.match(letters)) {
+		//  document.getElementById('name1').style.display='none';
+		  document.getElementById('name1').innerHTML = '';
+	  } else {
+		//  alert("not valid");
+		  document.getElementById('name1').style.color = 'red';
+		    document.getElementById('name1').innerHTML = 'Name is not valid';
+		  document.getElementById('name').value = "";
+		  document.getElementById('name').focus();
+		 
+	  }
+	
+	}
+
+function phvalid(phone) {
+	   
+		
+    var y = document.getElementById('phone').value;
+    //alert("Phone number must be in numbers."+y);
+	   if(isNaN(y)||y.indexOf(" ")!=-1)
+	   {
+		  
+		   document.getElementById('phone1').style.color = 'red';
+		    document.getElementById('phone1').innerHTML = 'Please check your Number';
+		  document.getElementById('phone').focus();
+		 document.getElementById('phone').value = ""
+		
+		//document.getElementById('phone').style.display='none';
+	   }
+	  
+	   else if (y.length>10 || y.length<10)
+	   { 
+		   
+		   document.getElementById('phone1').style.color = 'red';
+		    document.getElementById('phone1').innerHTML = 'Phone number must be 10  digit';
+		  document.getElementById('phone').value = ""
+		 
+		// document.getElementById('phone').style.display='none';
+		    document.getElementById('phone').focus();
+		   
+	   }
+	   else
+		   {
+		   document.getElementById('phone1').innerHTML = '';
+	  //document.getElementById('phone').style.display='none';
+	 //document.getElementById('phone').style.display='none';
+		   }
+}
+function desvalid(inputtxt) {
+	
+	var letters = /^[A-Za-z]+$/;
+	var val = inputtxt.value.replace(/\s/g, '');
+	  if (val.match(letters)) {
+		 // document.getElementById('des').style.display='none';
+		   document.getElementById('des1').innerHTML = '';
+	  } else {
+
+		   document.getElementById('des1').style.color = 'red';
+		    document.getElementById('des1').innerHTML = 'Designation is not valid';
+		 // document.getElementById('des1').style.display='block';
+		  document.getElementById('des').value = "";
+		  document.getElementById('des').focus();
+	  }
+	
+	}
+	function agevalid(age)
+	{
+		var age=document.getElementById('age').value;
+		document.getElementById('age1').innerHTML = '';
+		if(age == "") 
+			{
+			   document.getElementById('age1').innerHTML = '';
+		    return true;
+			}
+		//check if age is a number or less than or greater than 100
+		if (isNaN(age)||age<18||age>66)
+		{ 
+			  document.getElementById('age1').style.color = 'red';
+			  document.getElementById('age1').innerHTML = 'The age must be a number between 1 and 100';
+		
+		      document.getElementById('age').value = "";
+			  document.getElementById('age').focus();
+		    
+		    return false;
+		}
+	}
+function depvalid(inputtxt) {
+	
+	var letters = /^[A-Za-z]+$/;
+	var val = inputtxt.value.replace(/\s/g, '');
+	document.getElementById('dep1').innerHTML = '';
+	  if (val.match(letters)) {
+		 // document.getElementById('des').style.display='none';
+
+	  } else {
+		       
+		  document.getElementById('dep1').style.color = 'red';
+	      document.getElementById('dep1').innerHTML = 'Department is not valid';
+		 // document.getElementById('des1').style.display='block';
+		  document.getElementById('dep').value = "";
+		  document.getElementById('dep').focus();
+	  }
+	
+	}
+
+/*function passvalid(pass) {
+	
+	var pa1 = document.getElementById('pass').value;
+	var pa2 = document.getElementById('cpass').value;
+	if(pa1!=pa2)
+		{
+		alert("password does not match");
+		document.getElementById('pa').style.display='block';
+		document.getElementById('cpass').value = ""
+			document.getElementById('cpass').focus();
+		}
+	else
+		{
+		document.getElementById('pa').style.display='none';
+		}
+}*/
+var check = function() {
+	  if (document.getElementById('pwd').value ==
+	    document.getElementById('cpwd').value) {
+	    document.getElementById('message').style.color = 'green';
+	    document.getElementById('message').innerHTML = 'matching';
+	  } else {
+	    document.getElementById('message').style.color = 'red';
+	    document.getElementById('message').innerHTML = 'not matching';
+	  }
+	}
+function passwordChanged() {
+	var strength = document.getElementById('strength').value;
+	var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+	var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+	var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+	var pwd = document.getElementById('pwd');
+	if (pwd.value.length==0) {
+		 document.getElementById('strength').style.color = 'red';
+		    document.getElementById('strength').innerHTML = 'Type password';
+	} else if (false == enoughRegex.test(pwd.value)) {
+	strength.innerHTML ='More characters';
+	} else if (strongRegex.test(pwd.value)) {
+		 document.getElementById('strength').style.color = 'Blue';
+		    document.getElementById('strength').innerHTML = 'Strong!';
+	} else if (mediumRegex.test(pwd.value)) {
+		 document.getElementById('strength').style.color = 'Orange';
+		    document.getElementById('strength').innerHTML = 'Medium!';
+	} else {
+		 document.getElementById('strength').style.color = 'red';
+		    document.getElementById('strength').innerHTML = 'Weak!';
+	}
+	}
+function  validFile() {
+    var fuData = document.getElementById('file');
+    var FileUploadPath = fuData.value;
+    document.getElementById('file1').innerHTML = '';
+//To check if user upload any file
+    if (FileUploadPath == '') {
+        alert("Please upload an image");
+
+    } else {
+        var Extension = FileUploadPath.substring(
+                FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+//The file uploaded is an image
+
+if (Extension == "gif" || Extension == "png" || Extension == "bmp"
+                || Extension == "jpeg" || Extension == "jpg") {
+
+//To Display
+            }
+//The file upload is NOT an image
+else {
+	 document.getElementById('file1').style.color = 'red';
+     document.getElementById('file1').innerHTML = 'Photo only allows file types of GIF, PNG, JPG, JPEG and BMP. ';
+	document.getElementById('file').value = "";
+	  document.getElementById('file').focus();
+            
+
+        }
+    }
+}
+</script>
